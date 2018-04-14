@@ -19,22 +19,27 @@ public class RouteModule : Route
 
     }
 
-    public void Run (string ip,ushort port){
+    public void RunClient (string ip,ushort port){
         _reader_objS();
         _run(ip,port);
     }
 
     private void _run(string ip,ushort port){
         route = new Route();
-        IPEndPoint serverIp = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+        IPEndPoint serverIp = new IPEndPoint(IPAddress.Parse(ip), port);
         Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         socket.BeginConnect(serverIp, asyncResult =>
         {
             route.NewConn(socket);
             route.SetEndian(true);
-            route.Write(0,0,"{json:123456,123456}阿萨德拉斯代理卡是");
             route.Reader(ReaderModuleHandler);
         }, null);
+    }
+
+    public void RunServer(Socket socket){
+        route.NewConn(socket);
+        route.SetEndian(true);
+        route.Reader(ReaderModuleHandler);
     }
 
     private void _reader_objS(){
