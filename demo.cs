@@ -8,15 +8,15 @@ using System.Threading;
 using System.Reflection;
 namespace Module 
 {
-    public class Login : Radio
+    public class Demo : Radio
     {
-        public Login():base(0)
+        public Demo():base(0)
         {
            
         }
         
         protected override void Route(Route.Module module){
-            Debug.Log("内容为:" + module.tlv.Length);
+            Debug.Log("路由module:"+ module.module +" 内容为:" + ByteToString(module.tlv.Value));
         }
     }
 
@@ -28,7 +28,7 @@ namespace Module
         }
         
         protected override void Route(Route.Module module){
-            Debug.Log("内容为:" + module.tlv.Length);
+            Debug.Log("路由module:"+ module.module +" 内容为:" + ByteToString(module.tlv.Value));
         }
     }
 }

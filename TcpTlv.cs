@@ -156,6 +156,7 @@ public class TcpTlv
         return b;
     }
 
+    //监听读取消息
     public void Reader(ReaderDelegate readerHandler){
         ReaderHandler = new ReaderDelegate(readerHandler);
         _readerMsg = new Thread(_reader);

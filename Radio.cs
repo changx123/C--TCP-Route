@@ -17,6 +17,10 @@ public abstract class Radio
     public void Write(Route.Module module){
             Route(module);
     }
+
+    public string ByteToString(byte[] b){
+        return System.Text.Encoding.UTF8.GetString(b);
+    }
     
     protected abstract void Route(Route.Module module);
 }
